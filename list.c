@@ -85,7 +85,7 @@ void freeList(list *xs) {
 
 void first(list *xs) {
 
-    if (xs->current != xs-> none) {
+    if (xs -> none -> next != xs -> none) {
 
         xs -> current = xs -> none -> next;
 
@@ -95,14 +95,16 @@ void first(list *xs) {
 // Explanation
 
 /*
- 88: if statement that checks if the current pointer is on the sentinel node if it is, nothing happens
- 90: if the current node is not on the sentinel node, the current pointer gets set back to the first node
+
+ 88: If statement that checks if the next pointer from the sentinel points to the sentinel, if it does then nothing happens
+ 90: If the next node is not on the sentinel node, the current pointer gets set back to the first node
+
 */
 
 
 void last(list *xs) {
 
-    if (xs->current != xs-> none) {
+    if (xs -> none -> back != xs -> none) {
 
         xs -> current = xs -> none -> back;
 
@@ -111,13 +113,23 @@ void last(list *xs) {
 
 // Explanation
 /*
- 105: if statement that checks if the current pointer is on the sentinel node if it is, nothing happens
- 107: if the current node is not on the sentinel node, the current pointer gets set back to the last node
+ 107: If statement that checks if the previous pointer from the sentinel node points to the sentinel, if it does then nothing happens
+ 109: if the previous node is not on the sentinel node, the current pointer gets set back to the last node
 */
 
 bool none(list *xs) {
-    return 0;
+
+    return xs -> current == xs -> none;
+
 };
+
+// Explanation
+
+/*
+
+ 122: Since a comparison statement already returns a true or false, a simple return of a comparison statement would output true if the current pointer is pointing at the sentinel node, and false if it wasn't
+
+*/
 
 bool after(list *xs) {
     return 0;
