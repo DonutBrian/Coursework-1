@@ -198,7 +198,23 @@ bool set(list *xs, itemload x) {
 
 */
 
-void insertAfter(list *xs, itemload x) {};
+void insertAfter(list *xs, itemload x) {
+
+    node *newNode = malloc(sizeof (node));
+    newNode -> x = x;
+
+    if (xs -> current == xs -> none) {
+        newNode -> next = xs -> none -> next;
+        xs -> none -> next = newNode;
+    }
+
+    newNode -> next = xs -> current -> next;
+    xs -> current -> next = newNode;
+    xs -> current -> next -> back = newNode;
+    newNode -> back = xs -> current;
+
+
+};
 
 void insertBefore(list *xs, itemload x) {};
 
