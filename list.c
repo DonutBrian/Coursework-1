@@ -42,13 +42,13 @@ list *newList(itemload e) {
 
 /*
 
- 28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored
- 29: Created a pointer called sentinel which points to a newly allocated node
- 30: Assigned the itemLoad x for the sentinel node as e
- 32: The none pointer in the new list is assigned to the sentinel node
- 33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node
- 35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node
- 38: Returns the listPointer, which holds the memory address of the new list
+ 28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored.
+ 29: Created a pointer called sentinel which points to a newly allocated node.
+ 30: Assigned the itemLoad x for the sentinel node as e.
+ 32: The none pointer in the new list is assigned to the sentinel node.
+ 33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node.
+ 35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node.
+ 38: Returns the listPointer, which holds the memory address of the new list.
 
 */
 
@@ -72,13 +72,13 @@ void freeList(list *xs) {
 
 /*
 
- 58 Created a while loop that checks to whether the current node has reached sentinel node
- 60: Created a new pointer called nextNode which points to the memory address of the next node
- 61: Frees the memory allocated to the current node
- 62: Assigns the current node to the next node
- 60-62: This was done to ensure the program remembers the next node when the current node gets freed
- 66: Frees the memory allocated to the sentinel node
- 67: Frees the memory allocated to the list
+ 58 Created a while loop that checks to whether the current node has reached sentinel node.
+ 60: Created a new pointer called nextNode which points to the memory address of the next node.
+ 61: Frees the memory allocated to the current node.
+ 62: Assigns the current node to the next node.
+ 60-62: This was done to ensure the program remembers the next node when the current node gets freed.
+ 66: Frees the memory allocated to the sentinel node.
+ 67: Frees the memory allocated to the list.
 
 */
 
@@ -96,8 +96,8 @@ void first(list *xs) {
 
 /*
 
- 88: If statement that checks if the next pointer from the sentinel points to the sentinel, if it does then nothing happens
- 90: If the next node is not on the sentinel node, the current pointer gets set back to the first node
+ 88: If statement that checks if the next pointer from the sentinel points to the sentinel, if it does then nothing happens.
+ 90: If the next node is not on the sentinel node, the current pointer gets set back to the first node.
 
 */
 
@@ -113,8 +113,8 @@ void last(list *xs) {
 
 // Explanation
 /*
- 107: If statement that checks if the previous pointer from the sentinel node points to the sentinel, if it does then nothing happens
- 109: if the previous node is not on the sentinel node, the current pointer gets set back to the last node
+ 107: If statement that checks if the previous pointer from the sentinel node points to the sentinel, if it does then nothing happens.
+ 109: if the previous node is not on the sentinel node, the current pointer gets set back to the last node.
 */
 
 bool none(list *xs) {
@@ -127,7 +127,7 @@ bool none(list *xs) {
 
 /*
 
- 122: Since a comparison statement already returns a true or false, a simple return of a comparison statement would output true if the current pointer is pointing at the sentinel node, and false if it wasn't
+ 122: Since a comparison statement already returns a true or false, a simple return of a comparison statement would output true if the current pointer is pointing at the sentinel node, and false if it wasn't.
 
 */
 
@@ -144,8 +144,8 @@ bool after(list *xs) {
 
 /*
 
- 136: Checks if the current pointer is pointing to the sentinel node, if it is return false
- 138-139: Otherwise the current pointer moves on to the next node and returns true
+ 136: Checks if the current pointer is pointing to the sentinel node, if it is return false.
+ 138-139: Otherwise the current pointer moves on to the next node and returns true.
 
 */
 
@@ -162,26 +162,41 @@ bool before(list *xs) {
 
 /*
 
- 154: Checks if the current pointer is pointing to the sentinel node, if it is return false
- 156-157: Otherwise the current pointer moves back to the previous node and returns true
+ 154: Checks if the current pointer is pointing to the sentinel node, if it is return false.
+ 156-157: Otherwise the current pointer moves back to the previous node and returns true.
 
 */
 
 itemload get(list *xs) {
+
     return xs -> current -> x;
+
 };
 
 // Explanation
 
 /*
 
- returns the current node's itemload, if no node is selected ie. its on the sentinel node, the default value will be returned in this case e
+ 172: returns the current node's itemload, if no node is selected ie. its on the sentinel node, the default value will be returned in this case e.
 
 */
 
 bool set(list *xs, itemload x) {
-    return 0;
+
+    if (xs -> current == xs -> none) return false;
+
+    xs -> current -> x = x;
+    return true;
 };
+
+// Explanation
+
+/*
+
+ 186: Checks if the current node is the sentinel node, if it is false is returned.
+ 188-189: Otherwise the current node's itemload gets changed to the value of x.
+
+*/
 
 void insertAfter(list *xs, itemload x) {};
 
