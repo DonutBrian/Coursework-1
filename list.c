@@ -25,17 +25,17 @@ typedef struct list list;
 
 list *newList(itemload e) {
 
-    list *listPointer = malloc(sizeof(list));
+    list *xs = malloc(sizeof(list));
     node *sentinel = malloc(sizeof(node));
     sentinel->x = e;
 
-    listPointer -> none = sentinel;
-    listPointer -> current = sentinel;
+    xs -> none = sentinel;
+    xs -> current = sentinel;
 
     sentinel->next = sentinel;
     sentinel->back = sentinel;
 
-    return listPointer;
+    return xs;
 
     // Explanation
     /*
@@ -51,7 +51,15 @@ list *newList(itemload e) {
     */
 };
 
-void freeList(list *xs) {};
+void freeList(list *xs) {
+    while (xs -> current != xs -> none) {
+        node *nextNode = xs -> current -> next;
+        free(xs -> current);
+        xs -> current = nextNode;
+    }
+    free(xs -> none);
+    free(xs);
+};
 
 void first(list *xs) {};
 
