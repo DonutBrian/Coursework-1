@@ -132,12 +132,40 @@ bool none(list *xs) {
 */
 
 bool after(list *xs) {
-    return 0;
+
+    if (xs -> current == xs -> none) return false;
+
+    xs -> current = xs -> current -> next;
+    return true;
+
 };
 
+// Explanation
+
+/*
+
+ 136: Checks if the current pointer is pointing to the sentinel node, if it is return false
+ 138-139: Otherwise the current pointer moves on to the next node and returns true
+
+*/
+
 bool before(list *xs) {
-    return 0;
+
+    if (xs -> current == xs -> none) return false;
+
+    xs -> current = xs -> current -> back;
+    return  true;
+
 };
+
+// Explanation
+
+/*
+
+ 154: Checks if the current pointer is pointing to the sentinel node, if it is return false
+ 156-157: Otherwise the current pointer moves back to the previous node and returns true
+
+*/
 
 itemload get(list *xs) {
     return 0;
