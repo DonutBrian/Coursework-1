@@ -27,13 +27,13 @@ list *newList(itemload e) {
 
     list *xs = malloc(sizeof(list));
     node *sentinel = malloc(sizeof(node));
-    sentinel->x = e;
+    sentinel -> x = e;
 
     xs -> none = sentinel;
     xs -> current = sentinel;
 
-    sentinel->next = sentinel;
-    sentinel->back = sentinel;
+    sentinel -> next = sentinel;
+    sentinel -> back = sentinel;
 
     return xs;
 };
@@ -168,8 +168,16 @@ bool before(list *xs) {
 */
 
 itemload get(list *xs) {
-    return 0;
+    return xs -> current -> x;
 };
+
+// Explanation
+
+/*
+
+ returns the current node's itemload, if no node is selected ie. its on the sentinel node, the default value will be returned in this case e
+
+*/
 
 bool set(list *xs, itemload x) {
     return 0;
