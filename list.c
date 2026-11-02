@@ -36,34 +36,84 @@ list *newList(itemload e) {
     sentinel->back = sentinel;
 
     return xs;
-
-    // Explanation
-    /*
-
-     28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored
-     29: Created a pointer called sentinel which points to a newly allocated node
-     30: Assigned the itemLoad x for the sentinel node as e
-     32: The none pointer in the new list is assigned to the sentinel node
-     33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node
-     35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node
-     38: Returns the listPointer, which holds the memory address of the new list
-
-    */
 };
 
+// Explanation
+
+/*
+
+ 28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored
+ 29: Created a pointer called sentinel which points to a newly allocated node
+ 30: Assigned the itemLoad x for the sentinel node as e
+ 32: The none pointer in the new list is assigned to the sentinel node
+ 33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node
+ 35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node
+ 38: Returns the listPointer, which holds the memory address of the new list
+
+*/
+
+
 void freeList(list *xs) {
+
     while (xs -> current != xs -> none) {
+
         node *nextNode = xs -> current -> next;
         free(xs -> current);
         xs -> current = nextNode;
+
     }
+
     free(xs -> none);
     free(xs);
+
+}
+
+// Explanation
+
+/*
+
+ 58 Created a while loop that checks to whether the current node has reached sentinel node
+ 60: Created a new pointer called nextNode which points to the memory address of the next node
+ 61: Frees the memory allocated to the current node
+ 62: Assigns the current node to the next node
+ 60-62: This was done to ensure the program remembers the next node when the current node gets freed
+ 66: Frees the memory allocated to the sentinel node
+ 67: Frees the memory allocated to the list
+
+*/
+
+
+void first(list *xs) {
+
+    if (xs->current != xs-> none) {
+
+        xs -> current = xs -> none -> next;
+
+    }
 };
 
-void first(list *xs) {};
+// Explanation
 
-void last(list *xs) {};
+/*
+ 88: if statement that checks if the current pointer is on the sentinel node if it is, nothing happens
+ 90: if the current node is not on the sentinel node, the current pointer gets set back to the first node
+*/
+
+
+void last(list *xs) {
+
+    if (xs->current != xs-> none) {
+
+        xs -> current = xs -> none -> back;
+
+    }
+};
+
+// Explanation
+/*
+ 105: if statement that checks if the current pointer is on the sentinel node if it is, nothing happens
+ 107: if the current node is not on the sentinel node, the current pointer gets set back to the last node
+*/
 
 bool none(list *xs) {
     return 0;
