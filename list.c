@@ -23,8 +23,73 @@ typedef struct list list;
 
 // ---------- ADD YOUR 14 FUNCTIONS HERE TO SOLVE THE COURSEWORK ----------
 
+list *newList(itemload e) {
 
+    list *listPointer = malloc(sizeof(list));
+    node *sentinel = malloc(sizeof(node));
+    sentinel->x = e;
 
+    listPointer -> none = sentinel;
+    listPointer -> current = sentinel;
+
+    sentinel->next = sentinel;
+    sentinel->back = sentinel;
+
+    return listPointer;
+
+    // Explanation
+    /*
+
+     28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored
+     29: Created a pointer called sentinel which points to a newly allocated node
+     30: Assigned the itemLoad x for the sentinel node as e
+     32: The none pointer in the new list is assigned to the sentinel node
+     33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node
+     35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node
+     38: Returns the listPointer, which holds the memory address of the new list
+
+    */
+};
+
+void freeList(list *xs) {};
+
+void first(list *xs) {};
+
+void last(list *xs) {};
+
+bool none(list *xs) {
+    return 0;
+};
+
+bool after(list *xs) {
+    return 0;
+};
+
+bool before(list *xs) {
+    return 0;
+};
+
+itemload get(list *xs) {
+    return 0;
+};
+
+bool set(list *xs, itemload x) {
+    return 0;
+};
+
+void insertAfter(list *xs, itemload x) {};
+
+void insertBefore(list *xs, itemload x) {};
+
+bool deleteToAfter(list *xs) {
+    return 0;
+};
+
+bool deleteToBefore(list *xs) {
+    return 0;
+};
+
+void reverse(list *xs) {};
 
 // Test the list module, using int as the itemload type. Strings are used as
 // 'pictograms' to describe lists. Single digits represent itemloads and the '|' symbol
