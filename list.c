@@ -23,6 +23,8 @@ typedef struct list list;
 
 // ---------- ADD YOUR 14 FUNCTIONS HERE TO SOLVE THE COURSEWORK ----------
 
+// Github Repository for code: https://github.com/DonutBrian/Coursework-1
+
 list *newList(itemload e) {
 
     list *xs = malloc(sizeof(list));
