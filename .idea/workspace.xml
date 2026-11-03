@@ -26,8 +26,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf16a941-a810-4b76-a94b-3770e73a7f95" name="Changes" comment="Finished Function 9&#10;&#10;Fixed some punctuation in other comments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="bf16a941-a810-4b76-a94b-3770e73a7f95" name="Changes" comment="Finished Function 10 and 11">
       <change beforePath="$PROJECT_DIR$/list.c" beforeDir="false" afterPath="$PROJECT_DIR$/list.c" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -276,6 +275,7 @@
     <MESSAGE value="Finished Function 6/7" />
     <MESSAGE value="Finished Function 8" />
     <MESSAGE value="Finished Function 9&#10;&#10;Fixed some punctuation in other comments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished Function 9&#10;&#10;Fixed some punctuation in other comments" />
+    <MESSAGE value="Finished Function 10 and 11" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished Function 10 and 11" />
   </component>
 </project>

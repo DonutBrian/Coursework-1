@@ -295,11 +295,31 @@ void insertBefore(list *xs, itemload x) {
 };
 
 bool deleteToAfter(list *xs) {
-    return 0;
+    if (xs -> current == xs -> none) {
+        return false;
+    }
+
+    xs -> current -> next -> back = xs -> current -> back;
+    xs -> current -> back -> next = xs -> current -> next;
+    node *tempPointer = xs->current->next;
+    free (xs -> current);
+    xs -> current = tempPointer;
+    return true;
+
 };
 
 bool deleteToBefore(list *xs) {
-    return 0;
+    if (xs -> current == xs -> none) {
+        return false;
+    }
+
+    xs -> current -> next -> back = xs -> current -> back;
+    xs -> current -> back -> next = xs -> current -> next;
+    node *tempPointer = xs->current->back;
+    free (xs -> current);
+    xs -> current = tempPointer;
+    return true;
+
 };
 
 void reverse(list *xs) {};
@@ -529,9 +549,9 @@ int main(void) {
     testSet();
     testInsertAfter();
     testInsertBefore();
-    // testDeleteToAfter();
-    // testDeleteToBefore();
-    // testReverse();
+    testDeleteToAfter();
+    testDeleteToBefore();
+    testReverse();
     printf("List module tests run OK.\n");
     return 0;
 }
