@@ -25,6 +25,9 @@ typedef struct list list;
 
 // Github Repository for code: https://github.com/DonutBrian/Coursework-1
 
+// FUNCTION #1: Create a new empty list on the Heap and make itemload e the default itemload. This default itemload
+// can be returned by other functions in case no itemload is selected. No itemload is selected in an empty list.
+
 list *newList(itemload e) {
 
     list *xs = malloc(sizeof(list));
@@ -40,20 +43,7 @@ list *newList(itemload e) {
     return xs;
 }
 
-// Explanation
-
-/*
-
- 28: Created a new list with a pointer called listPointer, then using the malloc function assigns the pointer to the address in memory where the allocated memory for the new list is stored.
- 29: Created a pointer called sentinel which points to a newly allocated node.
- 30: Assigned the itemLoad x for the sentinel node as e.
- 32: The none pointer in the new list is assigned to the sentinel node.
- 33: Due to the list upon initialisation being empty, the current pointer also gets assigned to the sentinel node.
- 35-36: Created a cyclical linked list where the list loops back to the sentinel node when empty whether you go to the next node or the previous node.
- 38: Returns the listPointer, which holds the memory address of the new list.
-
-*/
-
+// FUNCTION #2: Free up the list and all the data in it. Does not have to run in O(1).
 
 void freeList(list *xs) {
 
@@ -70,20 +60,9 @@ void freeList(list *xs) {
 
 }
 
-// Explanation
-
-/*
-
- 58 Created a while loop that checks to whether the current node has reached sentinel node.
- 60: Created a new pointer called nextNode which points to the memory address of the next node.
- 61: Frees the memory allocated to the current node.
- 62: Assigns the current node to the next node.
- 60-62: This was done to ensure the program remembers the next node when the current node gets freed.
- 66: Frees the memory allocated to the sentinel node.
- 67: Frees the memory allocated to the list.
-
-*/
-
+// FUNCTIONS #3/#4: Set the current itemload to the first itemload or to the last
+// itemload of the list, respectively. If the list has no itemloads the functions do nothing
+// and no itemload is selected.
 
 void first(list *xs) {
 
@@ -94,16 +73,6 @@ void first(list *xs) {
     }
 }
 
-// Explanation
-
-/*
-
- 88: If statement that checks if the next pointer from the sentinel points to the sentinel, if it does then nothing happens.
- 90: If the next node is not on the sentinel node, the current pointer gets set back to the first node.
-
-*/
-
-
 void last(list *xs) {
 
     if (xs -> none -> back != xs -> none) {
@@ -113,11 +82,8 @@ void last(list *xs) {
     }
 }
 
-// Explanation
-/*
- 107: If statement that checks if the previous pointer from the sentinel node points to the sentinel, if it does then nothing happens.
- 109: if the previous node is not on the sentinel node, the current pointer gets set back to the last node.
-*/
+// FUNCTION #5: Returns true if no itemload is selected.
+// Otherwise it returns false.
 
 bool none(list *xs) {
 
@@ -125,13 +91,10 @@ bool none(list *xs) {
 
 }
 
-// Explanation
-
-/*
-
- 122: Since a comparison statement already returns a true or false, a simple return of a comparison statement would output true if the current pointer is pointing at the sentinel node, and false if it wasn't.
-
-*/
+// FUNCTION #6: Make the itemload in the node following the currently selected itemload the current itemload
+// and return true. If after is called while the last itemload is the current itemload, then no itemload is
+// selected and true is returned. If the function is called while no itemload
+// is selected then the function does nothing and returns false.
 
 bool after(list *xs) {
 
@@ -142,14 +105,10 @@ bool after(list *xs) {
 
 }
 
-// Explanation
-
-/*
-
- 136: Checks if the current pointer is pointing to the sentinel node, if it is return false.
- 138-139: Otherwise the current pointer moves on to the next node and returns true.
-
-*/
+// FUNCTION #7: Make the itemload in the node before the currently selected itemload the current itemload
+// and return true. If before is called while the first itemload is the current itemload, then no itemload
+// is selected and true is returned. If the function is called while no itemload
+// is selected then the function does nothing and returns false.
 
 bool before(list *xs) {
 
@@ -160,14 +119,8 @@ bool before(list *xs) {
 
 }
 
-// Explanation
-
-/*
-
- 154: Checks if the current pointer is pointing to the sentinel node, if it is return false.
- 156-157: Otherwise the current pointer moves back to the previous node and returns true.
-
-*/
+// FUNCTION #8: Return the current itemload. If get is called and no itemload is selected
+// then the default itemload is returned.
 
 itemload get(list *xs) {
 
@@ -175,13 +128,8 @@ itemload get(list *xs) {
 
 }
 
-// Explanation
-
-/*
-
- 172: returns the current node's itemload, if no node is selected ie. its on the sentinel node, the default value will be returned in this case e.
-
-*/
+// FUNCTION #9: Set the current itemload to be the value of argument x and return true. If set is called
+// while no itemload is selected then the function does nothing and returns false.
 
 bool set(list *xs, itemload x) {
 
@@ -191,14 +139,9 @@ bool set(list *xs, itemload x) {
     return true;
 }
 
-// Explanation
-
-/*
-
- 186: Checks if the current node is the sentinel node, if it is false is returned.
- 188-189: Otherwise the current node's itemload gets changed to the value of x.
-
-*/
+// FUNCTION #10: Insert a new node with itemload x after the current itemload and make it the current itemload.
+// If insertAfter is called while no itemload is selected then the function inserts the itemload into a new node
+// placed at the very beginning of the list.
 
 void insertAfter(list *xs, itemload x) {
 
@@ -248,6 +191,10 @@ void insertAfter(list *xs, itemload x) {
 
 }
 
+// FUNCTION #11: Insert a new node with itemload x before the current itemload and make it the current itemload.
+// If insertAfter is called while no itemload is selected then the function inserts the itemload into a new node
+// placed at the very end of the list.
+
 void insertBefore(list *xs, itemload x) {
 
     node *newNode = malloc(sizeof (node));
@@ -296,6 +243,11 @@ void insertBefore(list *xs, itemload x) {
 
 }
 
+// FUNCTION #12: Delete the node with the current itemload and make its successor the current itemload,
+// then return true. If deleteToAfter is called while the last itemload is the current itemload then
+// the node with the last itemload is deleted, no itemload is selected, and true is returned. If
+// deleteToAfter is called while no itemload is selected then the function does nothing and returns false.
+
 bool deleteToAfter(list *xs) {
 
     if (xs -> current == xs -> none) {
@@ -315,6 +267,11 @@ bool deleteToAfter(list *xs) {
 
 }
 
+// FUNCTION #13: Delete the node with the current itemload and make its predecessor the current itemload,
+// then return true. If deleteToBefore is called while the first itemload is the current itemload then
+// the node with thw first itemload is deleted, no itemload is selected, and true is returned. If
+// deleteToBefore is called while no itemload is selected then the function does nothing and returns false.
+
 bool deleteToBefore(list *xs) {
 
     if (xs -> current == xs -> none) {
@@ -333,6 +290,10 @@ bool deleteToBefore(list *xs) {
     return true;
 
 }
+
+// FUNCTION #14: Invert the sequence of the list items, that is make the list start with the node and itemload that originally had
+// the last position and ensure that itemloads originally situated before a itemload will now be situated after it, and vice versa.
+// The selected itemload is not changed by this function. Does not have to run in O(1).
 
 void reverse(list *xs) {
 
