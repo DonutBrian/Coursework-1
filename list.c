@@ -36,7 +36,7 @@ list *newList(itemload e) {
     sentinel -> back = sentinel;
 
     return xs;
-};
+}
 
 // Explanation
 
@@ -90,7 +90,7 @@ void first(list *xs) {
         xs -> current = xs -> none -> next;
 
     }
-};
+}
 
 // Explanation
 
@@ -109,7 +109,7 @@ void last(list *xs) {
         xs -> current = xs -> none -> back;
 
     }
-};
+}
 
 // Explanation
 /*
@@ -121,7 +121,7 @@ bool none(list *xs) {
 
     return xs -> current == xs -> none;
 
-};
+}
 
 // Explanation
 
@@ -138,7 +138,7 @@ bool after(list *xs) {
     xs -> current = xs -> current -> next;
     return true;
 
-};
+}
 
 // Explanation
 
@@ -156,7 +156,7 @@ bool before(list *xs) {
     xs -> current = xs -> current -> back;
     return  true;
 
-};
+}
 
 // Explanation
 
@@ -171,7 +171,7 @@ itemload get(list *xs) {
 
     return xs -> current -> x;
 
-};
+}
 
 // Explanation
 
@@ -187,7 +187,7 @@ bool set(list *xs, itemload x) {
 
     xs -> current -> x = x;
     return true;
-};
+}
 
 // Explanation
 
@@ -244,7 +244,7 @@ void insertAfter(list *xs, itemload x) {
 
     xs -> current = newNode;
 
-};
+}
 
 void insertBefore(list *xs, itemload x) {
 
@@ -292,37 +292,62 @@ void insertBefore(list *xs, itemload x) {
 
     xs -> current = newNode;
 
-};
+}
 
 bool deleteToAfter(list *xs) {
+
     if (xs -> current == xs -> none) {
+
         return false;
+
     }
 
     xs -> current -> next -> back = xs -> current -> back;
     xs -> current -> back -> next = xs -> current -> next;
+
     node *tempPointer = xs->current->next;
+
     free (xs -> current);
     xs -> current = tempPointer;
     return true;
 
-};
+}
 
 bool deleteToBefore(list *xs) {
+
     if (xs -> current == xs -> none) {
+
         return false;
+
     }
 
     xs -> current -> next -> back = xs -> current -> back;
     xs -> current -> back -> next = xs -> current -> next;
+
     node *tempPointer = xs->current->back;
+
     free (xs -> current);
     xs -> current = tempPointer;
     return true;
 
-};
+}
 
-void reverse(list *xs) {};
+void reverse(list *xs) {
+
+    node *currentTempNode = xs -> current;
+
+    do {
+
+        node *nextTempNode = xs -> current -> next;
+        xs -> current -> next = xs -> current -> back;
+        xs -> current -> back = nextTempNode;
+        xs -> current = xs -> current -> next;
+
+    }
+    while ( xs -> current != currentTempNode);
+
+    xs -> current = currentTempNode;
+}
 
 // Test the list module, using int as the itemload type. Strings are used as
 // 'pictograms' to describe lists. Single digits represent itemloads and the '|' symbol
